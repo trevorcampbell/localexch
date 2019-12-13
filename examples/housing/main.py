@@ -18,16 +18,18 @@ def download_file(url, fn):
         f.flush()
 
 #urls and filenames
+data_fldr = 'data'
+if not os.path.exists(data_fldr):
+  os.mkdir(data_fldr)
 prices_paid_url = 'http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com/pp-2018.csv'
-prices_paid_fn = 'pp-2018.csv'
+prices_paid_fn = os.path.join(data_fldr, 'pp-2018.csv')
 geocode_url = 'http://download.geonames.org/export/zip/GB_full.csv.zip'
-geocode_zip_fn = 'GB-full.csv.zip'
-geocode_fn = 'GB_full.txt'
-housing_fn = 'housing.npy'
+geocode_zip_fn = os.path.join(data_fldr, 'GB-full.csv.zip')
+geocode_fn = os.path.join(data_fldr, 'GB_full.txt')
+housing_fn = os.path.join(data_fldr, 'housing.npy')
 
-#if data haven't been combined, do the combination
+#get raw data and preprocess if necessary
 if not os.path.exists(housing_fn):
-
   #if prices paid data doesn't exist, download it
   if not os.path.exists(prices_paid_fn):
     print("Prices paid data doesn't exist, downloading")

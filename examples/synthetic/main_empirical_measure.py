@@ -1,5 +1,11 @@
+import numpy as np
 
 
-- simulate a GP and a random step
+
+- simulate a GP, mixture of GPs, random step
 - evaluate robustness of estimation vs real f vs assumed f
 - 
+
+
+
+
